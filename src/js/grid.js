@@ -16,7 +16,7 @@ Crafty.c('BGGrid', {
 	init : function(){
 		this.cells = [];
 		
-		background = Crafty.e("2D, DOM, bg")
+		this.background = Crafty.e("2D, DOM, bg")
 			.attr({ x: 0 , y:0, z: -8000 });
 		
 		return this;
@@ -63,16 +63,16 @@ Crafty.c('BGGrid', {
 	//	Methods - Game over
 	//-----------------------------------------------------------------------------
 	
-	gridGameOver: function(looser){
-		Crafty.audio.play("gameOver");
+	gridGameOver: function(idPlayerLooser){
+		Crafty.audio.play("gameOver", 1, 1.0);
 		Crafty.sprite(290, "img/GameOverScreen_VicoryText.png", {
 			endTextSpriteVictory: [0, 0],
 			endTextSpriteDefeat: [1, 0]
 		});
-		Crafty.sprite(291, "img/GameOverScreen_RedVictory.png", {
+		Crafty.sprite(290, "img/GameOverScreen_RedVictory.png", {
 			redSpriteVictory: [0, 0]
 		});
-		Crafty.sprite(291, "img/GameOverScreen_RedDefeat.png", {
+		Crafty.sprite(290, "img/GameOverScreen_RedDefeat.png", {
 			redSpriteDefeat: [0, 0]
 		});
 		Crafty.sprite(289, "img/GameOverScreen_BlueVictory.png", {
@@ -81,16 +81,12 @@ Crafty.c('BGGrid', {
 		Crafty.sprite(289, "img/GameOverScreen_BlueDefeat.png", {
 			blueSpriteDefeat: [0, 0]
 		});
-				
-		Crafty.sprite(220, "img/Title_EatEmAll.png", {
-			endEAT: [0, 0]
-		});
 		
 		Crafty.sprite(285, "img/GameOverScreen_StatsText.png", {
 			statsText: [0, 0]
 		});
 		
-		if (looser.id == 1) {
+		if (idPlayerLooser == 1) {
 			Crafty.e("endText, endTextSpriteVictory").attr({ w: 290, h: 120, x: 630, y: 220});
 			Crafty.e("endText, endTextSpriteDefeat").attr({ w: 290, h: 120, x: 90, y: 220});
 			Crafty.e("finalTribute, redSpriteDefeat").attr({ w: 290, h: 220, x: 90, y: 0}).finalTribute();

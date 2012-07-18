@@ -13,7 +13,8 @@ Crafty.c('Fortress', {
 	//-----------------------------------------------------------------------------
 	
 	init: function() {
-		this.requires("2D, DOM");
+		this.requires("2D, DOM, Collision");
+		this.collision();
 		this._globalZ = 3;
 		return this;
 	},
@@ -46,7 +47,8 @@ Crafty.c('Fortress', {
 		this.player.pillar.drawLife();
 		
 		if (this.player.HPLeft <= 0) {
-			this.player.youLose();
+			idLooser = this.player.id;
+			Crafty.trigger('end');
 		}
 	}
 });
